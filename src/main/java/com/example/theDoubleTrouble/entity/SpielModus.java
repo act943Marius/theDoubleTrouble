@@ -1,4 +1,4 @@
-package com.example.theDoubleTrouble.model;
+package com.example.theDoubleTrouble.entity;
 
 public enum SpielModus {
 

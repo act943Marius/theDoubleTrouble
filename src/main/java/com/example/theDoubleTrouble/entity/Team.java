@@ -1,21 +1,34 @@
-package com.example.theDoubleTrouble.model;
+package com.example.theDoubleTrouble.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Team {
+
+    @Id
+    private Integer id;
 
     private String teamnamen;
     private String eMailAdresse;
-    private Spieler spieler1;
-    private Spieler spieler2;
+    private Integer spieler1Id;
+    private Integer spieler2Id;
     private String handynummer;
     private String passwort;
 
-    public Team(String teamnamen, String eMailAdresse, Spieler spieler1, Spieler spieler2, String handynummer, String passwort) {
+    public Team(String teamnamen, String eMailAdresse, Integer spieler1Id, Integer spieler2Id, String handynummer, String passwort) {
         this.teamnamen = teamnamen;
         this.eMailAdresse = eMailAdresse;
-        this.spieler1 = spieler1;
-        this.spieler2 = spieler2;
+        this.spieler1Id = spieler1Id;
+        this.spieler2Id = spieler2Id;
         this.handynummer = handynummer;
         this.passwort = passwort;
+    }
+
+    public Team() {
+
     }
 
     public String geteMailAdresse() {
@@ -26,20 +39,20 @@ public class Team {
         this.eMailAdresse = eMailAdresse;
     }
 
-    public Spieler getSpieler1() {
-        return spieler1;
+    public Integer getSpieler1Id() {
+        return spieler1Id;
     }
 
-    public void setSpieler1(Spieler spieler1) {
-        this.spieler1 = spieler1;
+    public void setSpieler1Id(Integer spieler1Id) {
+        this.spieler1Id = spieler1Id;
     }
 
-    public Spieler getSpieler2() {
-        return spieler2;
+    public Integer getSpieler2Id() {
+        return spieler2Id;
     }
 
-    public void setSpieler2(Spieler spieler2) {
-        this.spieler2 = spieler2;
+    public void setSpieler2Id(Integer spieler2Id) {
+        this.spieler2Id = spieler2Id;
     }
 
     public String getHandynummer() {
@@ -67,4 +80,12 @@ public class Team {
     }
 
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Id
+    public Integer getId() {
+        return id;
+    }
 }

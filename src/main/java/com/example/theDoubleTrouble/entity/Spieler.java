@@ -1,4 +1,5 @@
-package com.example.theDoubleTrouble.model;
+package com.example.theDoubleTrouble.entity;
+
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -11,6 +12,7 @@ public class Spieler {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     private String vorname;
     private String nachname;
     private Date geburtsdatum;
@@ -19,6 +21,10 @@ public class Spieler {
         this.vorname = vorname;
         this.nachname = nachname;
         this.geburtsdatum = geburtsdatum;
+    }
+
+    public Spieler() {
+
     }
 
     public String getVorname() {
