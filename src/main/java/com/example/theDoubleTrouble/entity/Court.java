@@ -9,13 +9,22 @@ import javax.validation.constraints.NotNull;
 @Table
 public class Court {
 
-    public Court(){}
+    public Court() {
+    }
+
+    public Court(Integer id, Integer courtNummer, Boolean besetzt) {
+        this.id = id;
+        this.courtNummer = courtNummer;
+        this.besetzt = besetzt;
+    }
 
     @Id
     private Integer id;
 
     @NotNull
-    private int courtNummer;
+    private Integer courtNummer;
+
+    private Boolean besetzt;
 
     public void setId(Integer id) {
         this.id = id;
@@ -24,5 +33,21 @@ public class Court {
     @Id
     public Integer getId() {
         return id;
+    }
+
+    public int getCourtNummer() {
+        return courtNummer;
+    }
+
+    public void setCourtNummer(int courtNummer) {
+        this.courtNummer = courtNummer;
+    }
+
+    public Boolean getBesetzt() {
+        return besetzt;
+    }
+
+    public void setBesetzt(Boolean besetzt) {
+        this.besetzt = besetzt;
     }
 }
