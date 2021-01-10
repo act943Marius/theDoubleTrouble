@@ -15,6 +15,16 @@ public class Rechnung {
     @GeneratedValue
     private Integer id;
 
+    private Double kosten;
+
+    public Rechnung(Integer id, Double kosten) {
+        this.id = id;
+        this.kosten = kosten;
+    }
+
+    public Rechnung() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -24,7 +34,11 @@ public class Rechnung {
         this.id = id;
     }
 
+    public Double getKosten() {
+        return kosten;
+    }
 
-
-
+    public void setKosten(Double kosten) {
+        this.kosten = kosten;
+    }
 }

@@ -16,11 +16,13 @@ public class Spieler {
     private String vorname;
     private String nachname;
     private Date geburtsdatum;
+    private Integer rechnungsNummer;
 
-    public Spieler(String vorname, String nachname, Date geburtsdatum) {
+    public Spieler(String vorname, String nachname, Date geburtsdatum, Integer rechnungsNummer) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.geburtsdatum = geburtsdatum;
+        this.rechnungsNummer = rechnungsNummer;
     }
 
     public Spieler() {
@@ -59,4 +61,11 @@ public class Spieler {
         this.geburtsdatum = geburtsdatum;
     }
 
+    public Integer getRechnungsNummer() {
+        return rechnungsNummer;
+    }
+
+    public void setRechnungsNummer(Integer rechnungsNummer) {
+        this.rechnungsNummer = rechnungsNummer;
+    }
 }
