@@ -17,14 +17,16 @@ public class Team {
     private Integer spieler2Id;
     private String handynummer;
     private String passwort;
+    private boolean imSpiel;
 
-    public Team(String teamnamen, String eMailAdresse, Integer spieler1Id, Integer spieler2Id, String handynummer, String passwort) {
+    public Team(String teamnamen, String eMailAdresse, Integer spieler1Id, Integer spieler2Id, String handynummer, String passwort, boolean imSpiel) {
         this.teamnamen = teamnamen;
         this.eMailAdresse = eMailAdresse;
         this.spieler1Id = spieler1Id;
         this.spieler2Id = spieler2Id;
         this.handynummer = handynummer;
         this.passwort = passwort;
+        this.imSpiel = imSpiel;
     }
 
     public Team() {
@@ -87,5 +89,13 @@ public class Team {
     @Id
     public Integer getId() {
         return id;
+    }
+
+    public boolean isImSpiel() {
+        return imSpiel;
+    }
+
+    public void setImSpiel(boolean imSpiel) {
+        this.imSpiel = imSpiel;
     }
 }

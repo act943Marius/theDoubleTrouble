@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Date;
+import java.util.Optional;
 
 @RestController
 public class TeamController {
@@ -22,13 +23,13 @@ public class TeamController {
             path = "/teamA",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Team getTeam() {
+    public Optional<Team> getTeam() {
         Spieler spieler1 = new Spieler("herr", "Schultz", new Date(2020, 5, 15), 1);
         Spieler spieler2 = new Spieler("herr", "mueller", new Date(2020, 5, 15), 2);
-        Team teamA = new Team("TeamA", "haha@gmail.com", spieler1.getId(), spieler2.getId(), "74563255424", "secretPasswort");
+        Team teamA = new Team("TeamA", "haha@gmail.com", spieler1.getId(), spieler2.getId(), "74563255424", "secretPasswort", false);
         //return teamA;
 
-        return teamRepository.getOne(1);
+        return teamRepository.findById(1);
     }
 //
 //    @GetMapping("/courses/{courseId}/students")

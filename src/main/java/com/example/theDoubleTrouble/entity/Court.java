@@ -3,7 +3,6 @@ package com.example.theDoubleTrouble.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -21,7 +20,6 @@ public class Court {
     @Id
     private Integer id;
 
-    @NotNull
     private Integer courtNummer;
 
     private Boolean besetzt;
