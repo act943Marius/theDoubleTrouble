@@ -1,37 +1,24 @@
 package com.example.theDoubleTrouble.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "Court")
 public class Court {
 
-    public Court() {
-    }
 
-    public Court(Integer id, Integer courtNummer, Boolean besetzt) {
-        this.id = id;
+    @Id
+    private Integer courtNummer;
+    private Boolean besetzt;
+
+    public Court(Integer courtNummer, Boolean besetzt) {
         this.courtNummer = courtNummer;
         this.besetzt = besetzt;
     }
 
-    @Id
-    private Integer id;
-
-    private Integer courtNummer;
-
-    private Boolean besetzt;
-
-    public void setId(Integer id) {
-        this.id = id;
+    public Court() {
     }
 
-    @Id
-    public Integer getId() {
-        return id;
-    }
 
     public int getCourtNummer() {
         return courtNummer;

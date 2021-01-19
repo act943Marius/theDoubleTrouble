@@ -73,7 +73,7 @@ public class SpielController {
         teamRepository.save(team2);
         Spielkarte sk1 = spielkarten.getContent().get(team1.getId()-1);
         Spielkarte sk2 = spielkarten.getContent().get(team2.getId()-1);
-        Spiel spiel = new Spiel(spielRepository.findAll(pageable).getContent().size() + 1, SpielModus.ZUFALL, sk1.getId(), sk2.getId(), court.getId(), new Time(10, 30, 0), 0, 0);
+        Spiel spiel = new Spiel(spielRepository.findAll(pageable).getContent().size() + 1, SpielModus.ZUFALL, sk1.getId(), sk2.getId(), 1, new Time(10, 30, 0), 0, 0);
         spielRepository.save(spiel);
         return spiel;
     }

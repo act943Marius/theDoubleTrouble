@@ -12,33 +12,20 @@ public class Team {
     private Integer id;
 
     private String teamnamen;
-    private String eMailAdresse;
     private Integer spieler1Id;
     private Integer spieler2Id;
-    private String handynummer;
-    private String passwort;
     private boolean imSpiel;
 
-    public Team(String teamnamen, String eMailAdresse, Integer spieler1Id, Integer spieler2Id, String handynummer, String passwort, boolean imSpiel) {
+    public Team(Integer id, String teamnamen, Integer spieler1Id, Integer spieler2Id, boolean imSpiel) {
+        this.id = id;
         this.teamnamen = teamnamen;
-        this.eMailAdresse = eMailAdresse;
         this.spieler1Id = spieler1Id;
         this.spieler2Id = spieler2Id;
-        this.handynummer = handynummer;
-        this.passwort = passwort;
         this.imSpiel = imSpiel;
     }
 
     public Team() {
 
-    }
-
-    public String geteMailAdresse() {
-        return eMailAdresse;
-    }
-
-    public void seteMailAdresse(String eMailAdresse) {
-        this.eMailAdresse = eMailAdresse;
     }
 
     public Integer getSpieler1Id() {
@@ -55,22 +42,6 @@ public class Team {
 
     public void setSpieler2Id(Integer spieler2Id) {
         this.spieler2Id = spieler2Id;
-    }
-
-    public String getHandynummer() {
-        return handynummer;
-    }
-
-    public void setHandynummer(String handynummer) {
-        this.handynummer = handynummer;
-    }
-
-    public String getPasswort() {
-        return passwort;
-    }
-
-    public void setPasswort(String passwort) {
-        this.passwort = passwort;
     }
 
     public String getTeamnamen() {

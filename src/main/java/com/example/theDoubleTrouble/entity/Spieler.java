@@ -1,28 +1,29 @@
 package com.example.theDoubleTrouble.entity;
 
 
-import javax.persistence.*;
-import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Spieler")
 public class Spieler {
 
+
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 
     private String vorname;
     private String nachname;
-    private Date geburtsdatum;
-    private Integer rechnungsNummer;
+    private Long telefonnummer;
 
-    public Spieler(String vorname, String nachname, Date geburtsdatum, Integer rechnungsNummer) {
+    public Spieler(Integer id, String vorname, String nachname, Long telefonnummer) {
+        this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
-        this.geburtsdatum = geburtsdatum;
-        this.rechnungsNummer = rechnungsNummer;
+        this.telefonnummer = telefonnummer;
     }
 
     public Spieler() {
@@ -45,27 +46,19 @@ public class Spieler {
         this.nachname = nachname;
     }
 
+    public Long getTelefonnummer() {
+        return telefonnummer;
+    }
+
+    public void setTelefonnummer(Long telefonnummer) {
+        this.telefonnummer = telefonnummer;
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Date getGeburtsdatum() {
-        return geburtsdatum;
-    }
-
-    public void setGeburtsdatum(Date geburtsdatum) {
-        this.geburtsdatum = geburtsdatum;
-    }
-
-    public Integer getRechnungsNummer() {
-        return rechnungsNummer;
-    }
-
-    public void setRechnungsNummer(Integer rechnungsNummer) {
-        this.rechnungsNummer = rechnungsNummer;
     }
 }
