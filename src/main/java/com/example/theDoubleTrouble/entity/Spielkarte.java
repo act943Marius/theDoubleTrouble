@@ -12,9 +12,9 @@ public class Spielkarte {
     private Integer id;
     private String teamname;
     private Integer anzahlSiege;
-    private Double punkteDifferenz;
+    private Integer punkteDifferenz;
 
-    public Spielkarte(Integer id, String teamname, Integer anzahlSiege, Double punkteDifferenz) {
+    public Spielkarte(Integer id, String teamname, Integer anzahlSiege, Integer punkteDifferenz) {
         this.id = id;
         this.teamname = teamname;
         this.anzahlSiege = anzahlSiege;
@@ -49,11 +49,11 @@ public class Spielkarte {
         this.anzahlSiege = anzahlSiege;
     }
 
-    public Double getPunkteDifferenz() {
+    public Integer getPunkteDifferenz() {
         return punkteDifferenz;
     }
 
-    public void setPunkteDifferenz(Double punkteDifferenz) {
+    public void setPunkteDifferenz(Integer punkteDifferenz) {
         this.punkteDifferenz = punkteDifferenz;
     }
 }

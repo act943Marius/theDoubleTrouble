@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,24 +52,29 @@ public class TeamController {
 //        }
         //TODO: Index neu berechnen, zu kleiner Index von spielerrepository
         Page<Spieler> spielerPage = spielerRepository.findAll(pageable);
-        List<Integer> spielerIDListe = new ArrayList<>();
-        for(int k = 0 ; k < spielerPage.getSize() ; k++){
-            spielerIDListe.add(spielerPage.getContent().get(k).getId());
-        }
+        List<Spieler> spielerListe = spielerRepository.findAll();
+       //List<Integer> spielerIDListe = new ArrayList<>();
+//        for(int k = 0 ; k < 10 ; k++){
+//            spielerIDListe.add(spielerPage.getContent().get(k).getId());
+//        }
 
-        for(int i = 1, j = 20; i <=20; i++, j++){
+        for(int i = 0, j = spielerListe.size() - 1; i < j; i++, j--) {
 
-            Integer sid1 = spielerIDListe.get(i);
-            Integer sid2 = spielerIDListe.get(j);
+//            Integer sid1 = spielerPage.getContent().get(i).getId();
+//            Integer sid2 = spielerPage.getContent().get(j).getId();
 
-//            Integer sid1 = spielerIDListe.get((int) (spielerIDListe.size() * Math.random()));
-//            spielerIDListe.remove(sid1);
-//            Integer sid2 = spielerIDListe.get((int) (spielerIDListe.size() * Math.random()));
-//            spielerIDListe.remove(sid2);
+            Integer sid1 = spielerListe.get(i).getId();
+            Integer sid2 = spielerListe.get(j).getId();
+
+//          Integer sid1 = spielerListe.get((int) (spielerListe.size() * Math.random())).getId();
+//           spielerListe.remove(sid1);
+//            Integer sid2 = spielerListe.get((int) (spielerListe.size() * Math.random())).getId();
+//           spielerListe.remove(sid2);
 
             String teamname = "" + sid1 + "plus" + sid2;
-            Team team = new Team(i, teamname, sid1, sid2, false);
+            Team team = new Team(i+1, teamname, sid1, sid2, false);
             teamRepository.save(team);
         }
+        //return "SpielerListe größe: " + spielerListe.size() + "  spielerPage größe: " + spielerPage.getSize() + "   getContent größe: " + spielerPage.getContent().size()+ "    spielerPage.getNumberofElements größe: " + spielerPage.getNumberOfElements();
     }
     }

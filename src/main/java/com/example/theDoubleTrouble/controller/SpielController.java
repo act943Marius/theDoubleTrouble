@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Time;
+import java.util.List;
 
 @RestController
 public class SpielController {
@@ -45,12 +46,12 @@ public class SpielController {
     //TODO: Fehlerzuweisungen beheben
     @GetMapping("/createspiel")
     public Spiel createSpiel(Pageable pageable) {
-        Page<Team> teams = teamRepository.findAll(pageable);
-        Page<Court> courts = courtRepository.findAll(pageable);
-        Page<Spielkarte> spielkarten = spielkarteRepository.findAll(pageable);
-        Court court = courts.getContent().get(0);
+        List<Team> teams = teamRepository.findAll();
+        List<Court> courts = courtRepository.findAll();
+        List<Spielkarte> spielkarten = spielkarteRepository.findAll();
+        Court court = courts.get(0);
         if (court.getBesetzt() != false) {
-            for (Court c : courts.getContent()) {
+            for (Court c : courts) {
                 if (c.getBesetzt() == false) {
                     court = c;
                 }
@@ -58,21 +59,21 @@ public class SpielController {
         }
         court.setBesetzt(true);
         courtRepository.save(court);
-        Team team1 = teams.getContent().get((int) (Math.random() * teams.getContent().size()));
+        Team team1 = teams.get((int) (Math.random() * teams.size()));
         while(team1.isImSpiel() == true){
-            team1 = teams.getContent().get((int) (Math.random() * teams.getContent().size()));
+            team1 = teams.get((int) (Math.random() * teams.size()));
         }
         team1.setImSpiel(true);
         teamRepository.save(team1);
 
-        Team team2 = teams.getContent().get((int) (Math.random() * teams.getContent().size()));
+        Team team2 = teams.get((int) (Math.random() * teams.size()));
         while( team2.isImSpiel() == true || team1.getId() == team2.getId()){
-            team2 = teams.getContent().get((int) (Math.random() * teams.getContent().size()));
+            team2 = teams.get((int) (Math.random() * teams.size()));
         }
         team2.setImSpiel(true);
         teamRepository.save(team2);
-        Spielkarte sk1 = spielkarten.getContent().get(team1.getId()-1);
-        Spielkarte sk2 = spielkarten.getContent().get(team2.getId()-1);
+        Spielkarte sk1 = spielkarten.get(team1.getId()-1);
+        Spielkarte sk2 = spielkarten.get(team2.getId()-1);
         Spiel spiel = new Spiel(spielRepository.findAll(pageable).getContent().size() + 1, SpielModus.ZUFALL, sk1.getId(), sk2.getId(), 1, new Time(10, 30, 0), 0, 0);
         spielRepository.save(spiel);
         return spiel;
