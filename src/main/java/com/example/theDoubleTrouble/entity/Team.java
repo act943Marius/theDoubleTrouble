@@ -1,5 +1,6 @@
 package com.example.theDoubleTrouble.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,6 +12,7 @@ public class Team {
     @Id
     private Integer id;
 
+    @Column(nullable = false, unique = true, length = 15)
     private String teamnamen;
     private Integer spieler1Id;
     private Integer spieler2Id;

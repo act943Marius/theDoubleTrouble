@@ -14,7 +14,6 @@ public class Spieler {
     @Id
     private Integer id;
 
-
     private String vorname;
     private String nachname;
     private Long telefonnummer;

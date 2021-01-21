@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TheDoubleTrouble - Home</title>
+</head>
+<body>
+    <!-- Beispiel für Überschrift-->
+    <h1>Willkommen auf Alexanders Badmintonturnier Homepage</h1>
+    <!-- Beispiel für Absatz-->
+    <p>this is a paragraph</p>
+    <!-- Beispiel für Verlinkung-->
+    <!-- <p><a href="https://localhost:8080/createspiel">Wenn du hier klickst kommt du auf die Seite localhost:8080/createspiel</a></p> -->
+    <p><a href="https://google.com">Wenn du hier klickst kommt du auf die Homepage von Google</a></p>
+    <!-- Beispiel für eine Textbox ohne Inhalt -->
+    <p><input type="text" size="25" /></p>
+    <!-- Beispiel für eine Textbox mit vorgefertigtem Inhalt -->
+    <p><input type="text" size="25" value="HTML Tutorials " /></p>
+    <!-- Beispiel für ein Zahl Inputfeld mit Beschränkung -->
+    <p><input type="number" size="5" /></p>
+    <!-- Beispiel für einen Button mit Funktionalität -->
+    <button onclick="displayResult()">Change text</button>
+    <!-- Beispiel für die Einbindung von Javascript Skript -->
+    <p id = beispielTextFeld></p>
+    <script type="text/javascript">
+
+        <!-- Hier kommt der JS Code rein -->
+
+        function displayResult() {
+            document.getElementById("beispielTextFeld").innerHTML = "Have a nice day!";
+        }
+
+    </script>
+    <!-- Beispiel für eine Tabelle -->
+    <h2>3 Rows and 3 Columns:</h2>
+    <table>
+        <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>500</td>
+            <td>600</td>
+        </tr>
+        <tr>
+            <td>700</td>
+            <td>800</td>
+            <td>900</td>
+        </tr>
+    </table>
+
+    <!-- Beispiel für eine Liste mit verschiedenen Elementen -->
+    <h2>An unordered HTML list</h2>
+
+    <ul>
+        <li>
+            <tr>
+                <td>Coffee</td>
+            </tr>
+        </li>
+        <li>
+            <p><a href="https://google.com">Wenn du hier klickst kommt du auf die Homepage von Google</a></p>
+        </li>
+        <li>Milk</li>
+    </ul>
+</body>
+ </html>
