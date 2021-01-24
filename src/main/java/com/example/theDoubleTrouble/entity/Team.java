@@ -13,14 +13,14 @@ public class Team {
     private Integer id;
 
     @Column(nullable = false, unique = true, length = 15)
-    private String teamnamen;
+    private String teamname;
     private Integer spieler1Id;
     private Integer spieler2Id;
     private boolean imSpiel;
 
-    public Team(Integer id, String teamnamen, Integer spieler1Id, Integer spieler2Id, boolean imSpiel) {
+    public Team(Integer id, String teamname, Integer spieler1Id, Integer spieler2Id, boolean imSpiel) {
         this.id = id;
-        this.teamnamen = teamnamen;
+        this.teamname = teamname;
         this.spieler1Id = spieler1Id;
         this.spieler2Id = spieler2Id;
         this.imSpiel = imSpiel;
@@ -46,12 +46,12 @@ public class Team {
         this.spieler2Id = spieler2Id;
     }
 
-    public String getTeamnamen() {
-        return teamnamen;
+    public String getTeamname() {
+        return teamname;
     }
 
-    public void setTeamnamen(String teamnamen) {
-        this.teamnamen = teamnamen;
+    public void setTeamname(String teamnamen) {
+        this.teamname = teamnamen;
     }
 
 

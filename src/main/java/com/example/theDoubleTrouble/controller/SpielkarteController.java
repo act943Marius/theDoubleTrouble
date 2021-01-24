@@ -32,7 +32,7 @@ public class SpielkarteController {
         List<Team> teamListe = teamRepository.findAll();
         for(int i = 0; i < teamListe.size(); i++) {
             Integer sid1 = teamListe.get(i).getId();
-            Spielkarte spielkarte = new Spielkarte(sid1, teamListe.get(i).getTeamnamen(), 0, 0);
+            Spielkarte spielkarte = new Spielkarte(sid1, teamListe.get(i).getTeamname(), 0, 0);
             spielkarteRepository.save(spielkarte);
         }
         }

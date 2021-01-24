@@ -10,4 +10,19 @@ public class ApplicationController {
     public String viewHomePage(){
         return "home";
     }
+
+    @GetMapping("httpTest")
+    public String viewHttpTestPage(){
+        return "httpTest";
+    }
+
+    @GetMapping("login")
+    public String viewLoginPage(){
+        return "login";
+    }
+
+    @GetMapping("teamstabelle")
+    public String viewTeamstabelle(){
+        return "teamstabelle";
+    }
 }

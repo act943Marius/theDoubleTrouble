@@ -40,6 +40,24 @@ public class TeamController {
 
     @RequestMapping(
             method = RequestMethod.GET,
+            path = "/alleteams",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<Team> getAllTeams() {
+        return teamRepository.findAll();
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            path = "/teamname",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public String getTeamname() {
+        return teamRepository.findById(1).get().getTeamname();
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
             path = "/teams",
             produces = MediaType.APPLICATION_JSON_VALUE
     )

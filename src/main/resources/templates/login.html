@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <label>Teamname</label>
+    <p><input id=teamnamenfeld type="text" size="25"/></p>
+    <label>passwort</label>
+    <p><input type="text" size="25"/></p>
+    <!-- <button onclick="document.location='http://localhost:8080/teamstabelle'">einloggen</button> -->
+    <button onclick="verifyUserData()">einloggen</button>
+<script type="text/javascript">
+
+    function displayTeams(){
+        document.location='http://localhost:8080/teamstabelle';
+    }
+
+    function verifyUserData(){
+    var HttpClient = function () {
+        this.get = function (aUrl, aCallback) {
+            var anHttpRequest = new XMLHttpRequest();
+            anHttpRequest.onreadystatechange = function () {
+                if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                    aCallback(anHttpRequest.responseText);
+            }
+            anHttpRequest.open("GET", aUrl, true);
+            anHttpRequest.send(null);
+        }
+    }
+    var theurl = 'http://localhost:8080/alleteams';
+    var client = new HttpClient();
+    client.get(theurl, function (response) {
+        var listeVonTeamJsonObjekte = JSON.parse(response);
+        var teamnameAusTextbox = document.getElementById("teamnamenfeld").innerText;
+        document.getElementById("hallo").innerHTML = teamnameAusTextbox; //document.getElementById("teamnamenfeld").innerHTML;
+        for(var i = 0; i < listeVonTeamJsonObjekte.length; i++){
+            var temp = listeVonTeamJsonObjekte[i].teamname;
+            // if(teamnameAusTextbox == temp){
+            //     displayTeams();
+            // }
+        }
+    });
+    }
+</script>
+<p id="hallo">hallo</p>
+
+</body>
+</html>

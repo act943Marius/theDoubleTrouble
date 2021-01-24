@@ -5,65 +5,124 @@
     <title>TheDoubleTrouble - Home</title>
 </head>
 <body>
-    <!-- Beispiel für Überschrift-->
-    <h1>Willkommen auf Alexanders Badmintonturnier Homepage</h1>
-    <!-- Beispiel für Absatz-->
-    <p>this is a paragraph</p>
-    <!-- Beispiel für Verlinkung-->
-    <!-- <p><a href="https://localhost:8080/createspiel">Wenn du hier klickst kommt du auf die Seite localhost:8080/createspiel</a></p> -->
-    <p><a href="https://google.com">Wenn du hier klickst kommt du auf die Homepage von Google</a></p>
-    <!-- Beispiel für eine Textbox ohne Inhalt -->
-    <p><input type="text" size="25" /></p>
-    <!-- Beispiel für eine Textbox mit vorgefertigtem Inhalt -->
-    <p><input type="text" size="25" value="HTML Tutorials " /></p>
-    <!-- Beispiel für ein Zahl Inputfeld mit Beschränkung -->
-    <p><input type="number" size="5" /></p>
-    <!-- Beispiel für einen Button mit Funktionalität -->
-    <button onclick="displayResult()">Change text</button>
-    <!-- Beispiel für die Einbindung von Javascript Skript -->
-    <p id = beispielTextFeld></p>
-    <script type="text/javascript">
+<!-- Beispiel für Überschrift-->
+<h1>Willkommen auf Alexanders Badmintonturnier Homepage</h1>
+<!-- Beispiel für Absatz-->
+<p>this is a paragraph</p>
+<!-- Beispiel für Verlinkung-->
+<!-- <p><a href="https://localhost:8080/createspiel">Wenn du hier klickst kommt du auf die Seite localhost:8080/createspiel</a></p> -->
+<p><a href="https:google.com">hier</a></p>
+<p><a href="http://localhost:8080/teamA">Wenn du hier klickst kommt du auf die localhost/teamA</a></p>
+<!-- Beispiel für eine Textbox ohne Inhalt -->
+<p><input type="text" size="25"/></p>
+<!-- Beispiel für eine Textbox mit vorgefertigtem Inhalt -->
+<p><input type="text" size="25" value="HTML Tutorials "/></p>
+<!-- Beispiel für ein Zahl Inputfeld mit Beschränkung -->
+<p><input type="number" size="5"/></p>
+<!-- Beispiel für einen Button mit Funktionalität -->
+<button onclick="displayResult()">Change text</button>
+<!-- Beispiel für die Einbindung von Javascript Skript -->
+<p id=beispielTextFeld></p>
+<script type="text/javascript">
 
-        <!-- Hier kommt der JS Code rein -->
+    <!-- Hier kommt der JS Code rein -->
 
-        function displayResult() {
-            document.getElementById("beispielTextFeld").innerHTML = "Have a nice day!";
+    function displayResult() {
+        document.getElementById("beispielTextFeld").innerHTML = "Have a nice day!";
+    }
+
+</script>
+
+<!--
+    Video wo erklärt wird wie man mit Javascript get und post Requests mit http sendet und liest:
+    https://www.youtube.com/watch?v=lD1iRp4ewZY&t=15s
+-->
+<button onclick="getHTTPClient()">HttpGetRequest</button>
+<script id=httpSkript type="text/javascript">
+    function getHTTPClient() {
+        var HttpClient = function () {
+            this.get = function (aUrl, aCallback) {
+                var anHttpRequest = new XMLHttpRequest();
+                anHttpRequest.onreadystatechange = function () {
+                    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                        aCallback(anHttpRequest.responseText);
+                }
+                anHttpRequest.open("GET", aUrl, true);
+                anHttpRequest.send(null);
+            }
         }
+        var theurl = 'http://localhost:8080/teamA';
+        var client = new HttpClient();
+        client.get(theurl, function (response) {
+            var response1 = JSON.parse(response);
+            document.getElementById("idFeld").innerHTML = response1.id;
+            document.getElementById("teamnameFeld").innerHTML = response1.teamname;
+            document.getElementById("spielerId1Feld").innerHTML = response1.spieler1Id;
+            document.getElementById("spielerId2Feld").innerHTML = response1.spieler2Id;
+            document.getElementById("imSpielFeld").innerHTML = response1.imSpiel;
+        });
+    }
+</script>
 
-    </script>
-    <!-- Beispiel für eine Tabelle -->
-    <h2>3 Rows and 3 Columns:</h2>
-    <table>
-        <tr>
-            <td>100</td>
-            <td>200</td>
-            <td>300</td>
-        </tr>
-        <tr>
-            <td>400</td>
-            <td>500</td>
-            <td>600</td>
-        </tr>
-        <tr>
-            <td>700</td>
-            <td>800</td>
-            <td>900</td>
-        </tr>
-    </table>
+<p>
+    Javascript Get Request Test
+</p>
+<table border="1">
+    <tr>
+        <td>TeamID :</td>
+        <td id="idFeld"></td>
+    </tr>
+    <tr>
+        <td>Teamname :</td>
+        <td id="teamnameFeld"></td>
+    </tr>
+    <tr>
+        <td>spielerId1 :</td>
+        <td id="spielerId1Feld"></td>
+    </tr>
+    <tr>
+        <td>spielerId2 :</td>
+        <td id="spielerId2Feld"></td>
+    </tr>
+    <tr>
+        <td>imSpiel :</td>
+        <td id="imSpielFeld"></td>
+    </tr>
+</table>
 
-    <!-- Beispiel für eine Liste mit verschiedenen Elementen -->
-    <h2>An unordered HTML list</h2>
+<!-- Beispiel für eine Tabelle -->
+<h2>3 Rows and 3 Columns:</h2>
+<table>
+    <tr>
+        <td>100</td>
+        <td>200</td>
+        <td>300</td>
+    </tr>
+    <tr>
+        <td>400</td>
+        <td>500</td>
+        <td>600</td>
+    </tr>
+    <tr>
+        <td>700</td>
+        <td>800</td>
+        <td>900</td>
+    </tr>
+</table>
 
-    <ul>
-        <li>
-            <tr>
-                <td>Coffee</td>
-            </tr>
-        </li>
-        <li>
-            <p><a href="https://google.com">Wenn du hier klickst kommt du auf die Homepage von Google</a></p>
-        </li>
-        <li>Milk</li>
-    </ul>
+<!-- Beispiel für eine Liste mit verschiedenen Elementen -->
+<h2>An unordered HTML list</h2>
+
+<ul>
+    <li>
+        <tr>
+            <td>Coffee</td>
+        </tr>
+    </li>
+    <li>
+        <p><a href="https://google.com">Wenn du hier klickst kommt du auf die Homepage von Google</a></p>
+    </li>
+    <li>Milk</li>
+</ul>
 </body>
- </html>
+</html>
