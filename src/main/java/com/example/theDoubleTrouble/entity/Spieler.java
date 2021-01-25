@@ -16,13 +16,11 @@ public class Spieler {
 
     private String vorname;
     private String nachname;
-    private Long telefonnummer;
 
-    public Spieler(Integer id, String vorname, String nachname, Long telefonnummer) {
+    public Spieler(Integer id, String vorname, String nachname) {
         this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
-        this.telefonnummer = telefonnummer;
     }
 
     public Spieler() {
@@ -43,14 +41,6 @@ public class Spieler {
 
     public void setNachname(String nachname) {
         this.nachname = nachname;
-    }
-
-    public Long getTelefonnummer() {
-        return telefonnummer;
-    }
-
-    public void setTelefonnummer(Long telefonnummer) {
-        this.telefonnummer = telefonnummer;
     }
 
     public Integer getId() {

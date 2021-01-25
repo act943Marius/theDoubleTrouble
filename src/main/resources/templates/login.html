@@ -5,47 +5,58 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <label>Teamname</label>
-    <p><input id=teamnamenfeld type="text" size="25"/></p>
-    <label>passwort</label>
-    <p><input type="text" size="25"/></p>
-    <!-- <button onclick="document.location='http://localhost:8080/teamstabelle'">einloggen</button> -->
-    <button onclick="verifyUserData()">einloggen</button>
+<h1>Login</h1>
+<label>Teamname</label>
+<p><input id=teamnamenfeld type="text" size="25"/></p>
+<label>Passwort (Team ID)</label>
+<p><input id=passwortFeld type="text" size="25"/></p>
+<!-- <button onclick="document.location='http://localhost:8080/teamstabelle'">einloggen</button> -->
+<button onclick="verifyUserData()">einloggen</button>
+<p id="fehlermeldungstext"></p>
+<p><a href="http://localhost:8080/registrieren">Registrieren</a></p>
 <script type="text/javascript">
 
-    function displayTeams(){
-        document.location='http://localhost:8080/teamstabelle';
+    function displayTeams() {
+        document.location = 'http://localhost:8080/teamstabelle';
     }
 
-    function verifyUserData(){
-    var HttpClient = function () {
-        this.get = function (aUrl, aCallback) {
-            var anHttpRequest = new XMLHttpRequest();
-            anHttpRequest.onreadystatechange = function () {
-                if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-                    aCallback(anHttpRequest.responseText);
+    function verifyUserData() {
+        var HttpClient = function () {
+            this.get = function (aUrl, aCallback) {
+                var anHttpRequest = new XMLHttpRequest();
+                anHttpRequest.onreadystatechange = function () {
+                    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                        aCallback(anHttpRequest.responseText);
+                }
+                anHttpRequest.open("GET", aUrl, true);
+                anHttpRequest.send(null);
             }
-            anHttpRequest.open("GET", aUrl, true);
-            anHttpRequest.send(null);
         }
-    }
-    var theurl = 'http://localhost:8080/alleteams';
-    var client = new HttpClient();
-    client.get(theurl, function (response) {
-        var listeVonTeamJsonObjekte = JSON.parse(response);
-        var teamnameAusTextbox = document.getElementById("teamnamenfeld").innerText;
-        document.getElementById("hallo").innerHTML = teamnameAusTextbox; //document.getElementById("teamnamenfeld").innerHTML;
-        for(var i = 0; i < listeVonTeamJsonObjekte.length; i++){
-            var temp = listeVonTeamJsonObjekte[i].teamname;
-            // if(teamnameAusTextbox == temp){
+        var theurl = 'http://localhost:8080/alleteams';
+        var client = new HttpClient();
+        client.get(theurl, function (response) {
+            var listeVonTeamJsonObjekte = JSON.parse(response);
+            var teamnameAusTextbox = document.getElementById("teamnamenfeld").value;
+            var passwortAusTextbox = document.getElementById("passwortFeld").value;
+
+            // var team = listeVonTeamJsonObjekte.get().teamname;
+            // if(listeVonTeamJsonObjekte.get().teamnameAusTextbox){
             //     displayTeams();
             // }
-        }
-    });
+            var falscheLoginDaten = false;
+            for (var i = 0; i < listeVonTeamJsonObjekte.length; i++) {
+                var tempName = listeVonTeamJsonObjekte[i].teamname;
+                var tempPasswort = listeVonTeamJsonObjekte[i].id;
+                if (passwortAusTextbox == tempPasswort && teamnameAusTextbox == tempName) {
+                    displayTeams();
+                    falscheLoginDaten = true;
+                }
+            }
+            if(falscheLoginDaten == false) {
+                document.getElementById("fehlermeldungstext").innerHTML = "Teamname oder Passwort ist nicht vorhanden. Bitte überprüfen oder registrieren.";
+            }
+        });
     }
 </script>
-<p id="hallo">hallo</p>
-
 </body>
 </html>

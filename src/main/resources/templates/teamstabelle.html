@@ -33,13 +33,13 @@
             var listeVonTeamJsonObjekte = JSON.parse(response);
             var table = ''; //document.getElementById("teamstable");
             var rows = listeVonTeamJsonObjekte.length;
-            var columns = 5;
            table += '<tr>';
                table += '<td>' + 'TeamID' + '</td>';
                table += '<td>' + 'Teamname' + '</td>';
                table += '<td>' + 'Spieler1ID' + '</td>';
                table += '<td>' + 'Spieler2ID' + '</td>';
                table += '<td>' + 'ImSpiel' + '</td>';
+               table += '<td>' + 'E-Mail-Adresse' + '</td>';
         table += '</tr>';
             for(var i = 0; i < rows; i++){
                 table += '<tr>';
@@ -49,6 +49,7 @@
                         table += '<td>' + listeVonTeamJsonObjekte[i].spieler1Id + '</td>';
                         table += '<td>' + listeVonTeamJsonObjekte[i].spieler2Id + '</td>';
                         table += '<td>' + listeVonTeamJsonObjekte[i].imSpiel + '</td>';
+                        table += '<td>' + listeVonTeamJsonObjekte[i].eMailAdresse + '</td>';
                 //}
                 table += '</tr>';
             }

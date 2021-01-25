@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,11 +29,6 @@ public class TeamController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public Optional<Team> getTeam() {
-        Spieler spieler1 = new Spieler(1, "herr", "Schultz", 1l);
-        Spieler spieler2 = new Spieler(2, "herr", "mueller", 2l);
-        //Team teamA = new Team(1, "TeamA", "haha@gmail.com", 1, 2, "74563255424", "secretPasswort", false);
-        //teamRepository.save(teamA);
-
         return teamRepository.findById(1);
     }
 
@@ -90,9 +84,15 @@ public class TeamController {
 //           spielerListe.remove(sid2);
 
             String teamname = "" + sid1 + "plus" + sid2;
-            Team team = new Team(i+1, teamname, sid1, sid2, false);
+            Team team = new Team(i+1, teamname, sid1, sid2, false, "eMailAdresse");
             teamRepository.save(team);
         }
         //return "SpielerListe größe: " + spielerListe.size() + "  spielerPage größe: " + spielerPage.getSize() + "   getContent größe: " + spielerPage.getContent().size()+ "    spielerPage.getNumberofElements größe: " + spielerPage.getNumberOfElements();
     }
+
+    @PostMapping("/teams")
+    public Team createTeam(@Valid @RequestBody Team team) {
+        return teamRepository.save(team);
+    }
+
     }

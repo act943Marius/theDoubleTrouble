@@ -17,17 +17,27 @@ public class Team {
     private Integer spieler1Id;
     private Integer spieler2Id;
     private boolean imSpiel;
+    private String eMailAdresse;
 
-    public Team(Integer id, String teamname, Integer spieler1Id, Integer spieler2Id, boolean imSpiel) {
+    public Team(Integer id, String teamname, Integer spieler1Id, Integer spieler2Id, boolean imSpiel, String eMailAdresse) {
         this.id = id;
         this.teamname = teamname;
         this.spieler1Id = spieler1Id;
         this.spieler2Id = spieler2Id;
         this.imSpiel = imSpiel;
+        this.eMailAdresse = eMailAdresse;
     }
 
     public Team() {
 
+    }
+
+    public String geteMailAdresse() {
+        return eMailAdresse;
+    }
+
+    public void seteMailAdresse(String eMailAdresse) {
+        this.eMailAdresse = eMailAdresse;
     }
 
     public Integer getSpieler1Id() {

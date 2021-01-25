@@ -16,13 +16,23 @@ public class ApplicationController {
         return "httpTest";
     }
 
+    @GetMapping("httpTestPost")
+    public String viewHttpTestPostPage(){
+        return "httpTestPost";
+    }
+
     @GetMapping("login")
     public String viewLoginPage(){
         return "login";
     }
 
+    @GetMapping("registrieren")
+    public String viewRegistrierungspage(){
+        return "registrieren";
+    }
+
     @GetMapping("teamstabelle")
-    public String viewTeamstabelle(){
+    public String viewTeamstabellenPage(){
         return "teamstabelle";
     }
 }

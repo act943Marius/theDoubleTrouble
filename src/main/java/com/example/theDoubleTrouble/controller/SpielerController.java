@@ -22,7 +22,7 @@ public class SpielerController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public Optional<Spieler> getSpieler() {
-        Spieler spieler1 = new Spieler(1, "herr", "Schultz", 190946436l);
+        Spieler spieler1 = new Spieler(1, "herr", "Schultz");
         spielerRepository.save(spieler1);
 
         return spielerRepository.findById(1);
@@ -34,12 +34,11 @@ public class SpielerController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public void initialisiereSpieler() {
-        for(int i = 1; i <=40; i++){
+        for(int i = 1; i <=240; i++){
             int id = i;
             String vorname = "vorname" + i;
             String nachname = "nachname" + i;
-            long telenr = (long)(100000000 * Math.random());
-            Spieler spieler = new Spieler(id, vorname, nachname, telenr);
+            Spieler spieler = new Spieler(id, vorname, nachname);
             spielerRepository.save(spieler);
         }
     }

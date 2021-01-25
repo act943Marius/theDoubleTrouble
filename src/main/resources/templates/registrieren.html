@@ -5,6 +5,101 @@
     <title>Registrierung</title>
 </head>
 <body>
+<h1>Registrierung für das Badmintontunier von Alexander</h1>
+<label>Teamname</label>
+<p><input id=teamnamenfeld type="text" size="25"/></p>
+<label>Vorname 1</label>
+<p><input id=vorname1Feld type="text" size="25"/></p>
+<label>Nachname 1</label>
+<p><input id=nachname1Feld type="text" size="25"/></p>
+<label>Vorname 2</label>
+<p><input id=vorname2Feld type="text" size="25"/></p>
+<label>Nachname 2</label>
+<p><input id=nachname2Feld type="text" size="25"/></p>
+<label>E-Mail-Adresse</label>
+<p><input id=eMailAdreeseFeld type="text" size="25"/></p>
+<button onclick="registrieren()">registrieren</button>
+<p id="fehlermeldungstext"></p>
+<p><a href="http://localhost:8080/login">Zurück zum Login</a></p>
+<script id=httpRegistrierenSkript type="text/javascript">
 
+    function registrieren() {
+        var idTeam = 0;
+        var HttpClient = function () {
+            this.get = function (aUrl, aCallback) {
+                var anHttpRequest = new XMLHttpRequest();
+                anHttpRequest.onreadystatechange = function () {
+                    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                        aCallback(anHttpRequest.responseText);
+                }
+                anHttpRequest.open("GET", aUrl, true);
+                anHttpRequest.send(null);
+            }
+        }
+        var theurl = 'http://localhost:8080/alleteams';
+        var client = new HttpClient();
+
+        client.get(theurl, function (response) {
+            var listeVonTeamJsonObjekte  = JSON.parse(response);
+            var teamname = document.getElementById("teamnamenfeld").value;
+            var vorname1 = document.getElementById("vorname1Feld").value;
+            var nachname1 = document.getElementById("nachname1Feld").value;
+            var vorname2 = document.getElementById("vorname2Feld").value;
+            var nachname2 = document.getElementById("nachname2Feld").value;
+            var eMailAdresse = document.getElementById("eMailAdreeseFeld").value;
+            var imSpiel = false;
+
+           if(teamname.length > 0 && vorname1.length > 0 && nachname1.length > 0 && vorname2.length > 0 && nachname2.length > 0) {
+               var nameVergeben = false;
+                for (var i = 0; i < listeVonTeamJsonObjekte.length; i++) {
+                    var tempName = listeVonTeamJsonObjekte[i].teamname;
+                    if (teamname == tempName) {
+                        nameVergeben = true;
+                    }
+                }
+            if(nameVergeben == false) {
+                    //teamID = listeVonTeamJsonObjekte.length + 1;
+                    postTeam(listeVonTeamJsonObjekte.length +1, teamname);
+                    alert("Dein Team ist erfolgreich registriert! Dein Passwort ist: " + (listeVonTeamJsonObjekte.length + 1));
+                    //document.getElementById("fehlermeldungstext").innerHTML = "Dein Team ist erfolgreich registriert! Dein Passwort ist: " + (listeVonTeamJsonObjekte.length + 1);
+               }
+            else{
+                alert("Der gewünschte Teamname ist bereits vergeben.");
+                //document.getElementById("fehlermeldungstext").innerHTML = "Der gewünschte Teamname ist bereits vergeben.";
+            }
+            }
+            else{
+                document.getElementById("fehlermeldungstext").innerHTML = "Kein Feld darf leer sein!!!";
+            }
+        });
+    }
+
+    function postTeam(teamID, teamname){
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "id": teamID,
+            "teamname": teamname,
+            "spieler1Id": 44,
+            "spieler2Id": 45,
+            "imSpiel": false,
+            "eMailAdresse": "sdfgsdg"
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/teams", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+
+</script>
 </body>
 </html>
