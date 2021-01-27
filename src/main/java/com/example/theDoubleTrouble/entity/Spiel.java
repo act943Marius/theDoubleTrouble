@@ -15,6 +15,8 @@ public class Spiel {
     private SpielModus spielModus;
     private Integer spielkarteTeam1Id;
     private Integer spielkarteTeam2Id;
+    private String teamname1;
+    private String teamname2;
     private Integer courtID;
     private Time spielzeit;
     private Integer team1Punkte;
@@ -24,12 +26,14 @@ public class Spiel {
     }
 
     public Spiel(Integer id, SpielModus spielModus, Integer spielkarteTeam1Id,
-                 Integer spielkarteTeam2Id, Integer courtID, Time spielzeit,
+                 Integer spielkarteTeam2Id, String teamname1, String teamname2, Integer courtID, Time spielzeit,
                  Integer team1Punkte, Integer team2Punkte) {
         this.id = id;
         this.spielModus = spielModus;
         this.spielkarteTeam1Id = spielkarteTeam1Id;
         this.spielkarteTeam2Id = spielkarteTeam2Id;
+        this.teamname1 = teamname1;
+        this.teamname2 = teamname2;
         this.courtID = courtID;
         this.spielzeit = spielzeit;
         this.team1Punkte = team1Punkte;
@@ -91,6 +95,22 @@ public class Spiel {
 
     public void setTeam1Punkte(Integer team1Punkte) {
         this.team1Punkte = team1Punkte;
+    }
+
+    public String getTeamname1() {
+        return teamname1;
+    }
+
+    public void setTeamname1(String teamname1) {
+        this.teamname1 = teamname1;
+    }
+
+    public String getTeamname2() {
+        return teamname2;
+    }
+
+    public void setTeamname2(String teamname2) {
+        this.teamname2 = teamname2;
     }
 
     public Integer getTeam2Punkte() {

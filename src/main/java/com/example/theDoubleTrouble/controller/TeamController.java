@@ -5,8 +5,6 @@ import com.example.theDoubleTrouble.entity.Team;
 import com.example.theDoubleTrouble.repository.SpielerRepository;
 import com.example.theDoubleTrouble.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,39 +53,19 @@ public class TeamController {
             path = "/teams",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public void initialisiereTeams(Pageable pageable) {
-//        Page<Spieler> spielerPage = spielerRepository.findAll(pageable);
-//        List<Integer> spielerIDListe = new ArrayList<>();
-//        for(Spieler spieler : spielerPage.getContent()){
-//            spielerIDListe.add(spieler.getId());
-//            System.out.print(spieler.getId());
-//        }
-        //TODO: Index neu berechnen, zu kleiner Index von spielerrepository
-        Page<Spieler> spielerPage = spielerRepository.findAll(pageable);
+    public void initialisiereTeams() {
         List<Spieler> spielerListe = spielerRepository.findAll();
-       //List<Integer> spielerIDListe = new ArrayList<>();
-//        for(int k = 0 ; k < 10 ; k++){
-//            spielerIDListe.add(spielerPage.getContent().get(k).getId());
-//        }
 
         for(int i = 0, j = spielerListe.size() - 1; i < j; i++, j--) {
-
-//            Integer sid1 = spielerPage.getContent().get(i).getId();
-//            Integer sid2 = spielerPage.getContent().get(j).getId();
-
             Integer sid1 = spielerListe.get(i).getId();
             Integer sid2 = spielerListe.get(j).getId();
-
-//          Integer sid1 = spielerListe.get((int) (spielerListe.size() * Math.random())).getId();
-//           spielerListe.remove(sid1);
-//            Integer sid2 = spielerListe.get((int) (spielerListe.size() * Math.random())).getId();
-//           spielerListe.remove(sid2);
+            String name1 = spielerListe.get(i).getVorname() + " " + spielerListe.get(i).getNachname();
+            String name2 = spielerListe.get(j).getVorname() + " " + spielerListe.get(j).getNachname();
 
             String teamname = "" + sid1 + "plus" + sid2;
-            Team team = new Team(i+1, teamname, sid1, sid2, false, "eMailAdresse");
+            Team team = new Team(i+1, teamname, sid1, sid2, name1, name2, false, "eMailAdresse");
             teamRepository.save(team);
         }
-        //return "SpielerListe größe: " + spielerListe.size() + "  spielerPage größe: " + spielerPage.getSize() + "   getContent größe: " + spielerPage.getContent().size()+ "    spielerPage.getNumberofElements größe: " + spielerPage.getNumberOfElements();
     }
 
     @PostMapping("/teams")

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+<body>
+<h1>Willkommen zum Badmintontunier von Alexander "TheDoubleTrouble"</h1>
+<button onclick="zeigeAlleTeams()">Alle Teams</button>
+<button onclick="zeigeSpielplan()">Spielplan</button>
+<button onclick="zeigeStatistik()">Statistik</button>
+
+<script id=buttonScript type="text/javascript">
+        function zeigeAlleTeams(){
+            document.location = "http://localhost:8080/teamstabelle";
+        }
+        function zeigeSpielplan(){
+            document.location = "http://localhost:8080/spielPlan";
+        }
+        function zeigeStatistik(){
+            document.location = "http://localhost:8080/statistik";
+        }
+</script>
+</body>
+</html>

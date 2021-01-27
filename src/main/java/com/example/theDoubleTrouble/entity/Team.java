@@ -16,14 +16,18 @@ public class Team {
     private String teamname;
     private Integer spieler1Id;
     private Integer spieler2Id;
+    private String spielerName1;
+    private String spielerName2;
     private boolean imSpiel;
     private String eMailAdresse;
 
-    public Team(Integer id, String teamname, Integer spieler1Id, Integer spieler2Id, boolean imSpiel, String eMailAdresse) {
+    public Team(Integer id, String teamname, Integer spieler1Id, Integer spieler2Id, String spielerName1, String spielerName2, boolean imSpiel, String eMailAdresse) {
         this.id = id;
         this.teamname = teamname;
         this.spieler1Id = spieler1Id;
         this.spieler2Id = spieler2Id;
+        this.spielerName1 = spielerName1;
+        this.spielerName2 = spielerName2;
         this.imSpiel = imSpiel;
         this.eMailAdresse = eMailAdresse;
     }
@@ -80,5 +84,21 @@ public class Team {
 
     public void setImSpiel(boolean imSpiel) {
         this.imSpiel = imSpiel;
+    }
+
+    public String getSpielerName1() {
+        return spielerName1;
+    }
+
+    public void setSpielerName1(String spielerName1) {
+        this.spielerName1 = spielerName1;
+    }
+
+    public String getSpielerName2() {
+        return spielerName2;
+    }
+
+    public void setSpielerName2(String spielerName2) {
+        this.spielerName2 = spielerName2;
     }
 }

@@ -5,7 +5,7 @@
     <title>Login</title>
 </head>
 <body>
-<h1>Login</h1>
+<h1>TheDoubleTrouble Badmintonturnier</h1>
 <label>Teamname</label>
 <p><input id=teamnamenfeld type="text" size="25"/></p>
 <label>Passwort (Team ID)</label>
@@ -16,8 +16,8 @@
 <p><a href="http://localhost:8080/registrieren">Registrieren</a></p>
 <script type="text/javascript">
 
-    function displayTeams() {
-        document.location = 'http://localhost:8080/teamstabelle';
+    function displayHomepage() {
+        document.location = 'http://localhost:8080/homepage';
     }
 
     function verifyUserData() {
@@ -48,7 +48,7 @@
                 var tempName = listeVonTeamJsonObjekte[i].teamname;
                 var tempPasswort = listeVonTeamJsonObjekte[i].id;
                 if (passwortAusTextbox == tempPasswort && teamnameAusTextbox == tempName) {
-                    displayTeams();
+                    displayHomepage();
                     falscheLoginDaten = true;
                 }
             }

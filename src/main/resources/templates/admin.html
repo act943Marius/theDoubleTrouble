@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+    var subjectObject = {
+        "Zufall": "",
+        "Schweizer System": ""
+    }
+    var subjectObject2 = {
+        "13:00": "",
+        "14:00": ""
+    }
+    window.onload = function () {
+        var selectSpielmodus = document.getElementById("spielmodusMenu");
+        var selectUhrzeit = document.getElementById("uhrzeitMenu");
+        for (var x in subjectObject) {
+            selectSpielmodus.options[selectSpielmodus.options.length] = new Option(x, x);
+        }
+        for (var x in subjectObject2) {
+            selectUhrzeit.options[selectUhrzeit.options.length] = new Option(x, x);
+        }
+    }
+    var name = "ghjgjjgdf";
+
+    function createSpiel() {
+        var spielModus = document.getElementById("spielmodusMenu").value;
+        var url = "/createspiel" + spielModus;
+        document.location = url;
+    }
+</script>
+
+<h1 id="überschrift">Turnierorganisation</h1>
+Spielmodus: <select name="spielmodus" id="spielmodusMenu">
+    <option value="" selected="Spielmodus">Spielmodus auswählen</option>
+</select>
+<br><br>
+Uhrzeit: <select name="uhrzeit" id="uhrzeitMenu">
+    <option value="" selected="selected">Uhrzeit auswählen</option>
+</select>
+<br><br>
+<button onclick="createSpiel()" type="submit">submit</button>
+<!--<form name="form1" id="form1" action="/createspiel">-->
+<!--</form>-->
+
+</body>
+</html>

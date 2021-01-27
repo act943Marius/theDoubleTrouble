@@ -34,7 +34,7 @@ public class SpielerController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public void initialisiereSpieler() {
-        for(int i = 1; i <=240; i++){
+        for(int i = 1; i <=72; i++){
             int id = i;
             String vorname = "vorname" + i;
             String nachname = "nachname" + i;

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ApplicationController {
 
-    @GetMapping("")
-    public String viewHomePage(){
-        return "home";
+    @GetMapping("Test")
+    public String viewTestPage(){
+        return "test";
     }
 
     @GetMapping("httpTest")
@@ -21,7 +21,7 @@ public class ApplicationController {
         return "httpTestPost";
     }
 
-    @GetMapping("login")
+    @GetMapping("")
     public String viewLoginPage(){
         return "login";
     }
@@ -35,4 +35,20 @@ public class ApplicationController {
     public String viewTeamstabellenPage(){
         return "teamstabelle";
     }
+
+    @GetMapping("admin")
+    public String viewAdminPage(){
+        return "admin";
+    }
+
+    @GetMapping("spielPlan")
+    public String viewSpielplanPage(){
+        return "spielPlan";
+    }
+
+    @GetMapping("homepage")
+    public String viewHomePage(){
+        return "homepage";
+    }
+
 }
