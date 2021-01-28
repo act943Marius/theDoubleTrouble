@@ -21,11 +21,12 @@
 <label for="punkteTeam2">Punkte Team 2 eintragen:</label>
 <input type="number" id="punkteTeam2" name="quantity" min="0" max="30">
 <button onclick="punkteEintragen()">Punkte bestätigen</button>
+<p id="testTest">TestMethodsText</p>
 <p></p>
 
 <table style="text-align:center;" id="spielplanTabelle" border="1"></table>
 <script id=httpSkript type="text/javascript">
-    //function getHTTPClient2() {
+
     var HttpClient = function () {
         this.get = function (aUrl, aCallback) {
             var anHttpRequest = new XMLHttpRequest();
@@ -60,85 +61,61 @@
             table += '<td>' + listeVonSpielenJsonObjekte[i].teamname2 + '</td>';
             table += '<td>' + listeVonSpielenJsonObjekte[i].courtID + '</td>';
             table += '<td>' + listeVonSpielenJsonObjekte[i].spielzeit + '</td>';
-            table += '<td>' + listeVonSpielenJsonObjekte[i].team1Punkte + " : " + listeVonSpielenJsonObjekte[i].team2Punkte +'</td>';
+            table += '<td>' + listeVonSpielenJsonObjekte[i].team1Punkte + " : " + listeVonSpielenJsonObjekte[i].team2Punkte + '</td>';
             table += '</tr>';
         }
         document.getElementById("spielplanTabelle").innerHTML = table;
         //document.write('<table border="1">' + table + '</table>');
     });
 
+    //Punkte in Tabelle eintragen
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+    //
+    // var raw = JSON.stringify({"team1Punkte": punkte1, "team2Punkte": punkte2});
+    //
+    // var requestOptions = {
+    //     method: 'PUT',
+    //     headers: myHeaders,
+    //     body: raw,
+    //     redirect: 'follow'
+    // };
+    //
+    // fetch("http://localhost:8080/spiel/" + spielID, requestOptions)
+    //     .then(response => response.text())
+    //     .then(result => console.log(result))
+    //     .catch(error => console.log('error', error));
+
     function punkteEintragen() {
         var punkte1 = document.getElementById("punkteTeam1").value;
         var punkte2 = document.getElementById("punkteTeam2").value;
         var spielID = document.getElementById("spielID").value;
+        var listeVonSpielenJsonObjekte = null;
+        var spiel = null;
+        var listeVonSpielkartenJsonObjekte = null;
+        var spielkarteTeam1 = null;
+        var spielkarteTeam2 = null;
+        var spielkarteTeam1ID;
+        var spielkarteTeam2ID;
 
         var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({"team1Punkte": punkte1, "team2Punkte": punkte2});
+            var raw = JSON.stringify({"team1Punkte": punkte1, "team2Punkte": punkte2});
 
-        var requestOptions = {
-            method: 'PUT',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+            var requestOptions = {
+                method: 'PUT',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
 
-        fetch("http://localhost:8080/spiel/" + spielID, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+            fetch("http://localhost:8080/spiel/" + spielID, requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
 
-        // var punkteDiffTeam1 = punkte1 - punkte2;
-        // var punkteDiffTeam2 = punkte2 - punkte1;
-
-        // var spiel = getSpiel(spielID);
-        // var teamID1 = spiel.spielkarteTeam1Id;
-        // var teamID2 = spiel.spielkarteTeam2Id;
-
-        // if(punkte1>punkte2){
-        //     //team1 ist sieger
-        //     updateSpielkarte(true, punkteDiffTeam1, teamID1);
-        //     updateSpielkarte(false, punkteDiffTeam2, teamID2);
-        // }
-        // else{
-        //     //team2 ist sieger
-        //     updateSpielkarte(true, punkteDiffTeam2, teamID2);
-        //     updateSpielkarte(false, punkteDiffTeam1, teamID1);
-        // }
-
-        document.location = "http://localhost:8080/spielPlan";
-    }
-
-    function updateSpielkarte(sieger, punktediff, teamID){
-        var spielkarte = getSpielkarte(teamID);
-        var anzahlSiegeAlt = spielkarte.anzahlSiege;
-        var anzahlsiegeNeu = spielkarte.anzahlSiege + 1;
-        var punktedifferenzNeu = spielkarte.punkteDifferenz + punktediff;
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        if(sieger == true) {
-            var raw = JSON.stringify({"anzahlSiege": anzahlsiegeNeu, "punkteDifferenz": punktedifferenzNeu});
-        }
-        else {
-            var raw = JSON.stringify({"anzahlSiege": anzahlSiegeAlt, "punkteDifferenz": punktedifferenzNeu});
-        }
-
-        var requestOptions = {
-            method: 'PUT',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("http://localhost:8080/spielkarte/" + teamID, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-    }
-
-    function getSpielkarte(id){
+        //Getting Spiele from Database
         var HttpClient = function () {
             this.get = function (aUrl, aCallback) {
                 var anHttpRequest = new XMLHttpRequest();
@@ -150,33 +127,128 @@
                 anHttpRequest.send(null);
             }
         }
-        var theurl = 'http://localhost:8080/spielkarte/' + id;
+        var theurl = 'http://localhost:8080/alleSpiele';
         var client = new HttpClient();
         client.get(theurl, function (response) {
-            var spielkarte = JSON.parse(response);
-            return spielkarte;
-    });
-    }
-
-    function getSpiel(id){
-        var HttpClient = function () {
-            this.get = function (aUrl, aCallback) {
-                var anHttpRequest = new XMLHttpRequest();
-                anHttpRequest.onreadystatechange = function () {
-                    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-                        aCallback(anHttpRequest.responseText);
+            listeVonSpielenJsonObjekte = JSON.parse(response);
+            //find Spiel
+            for (var k = 0; k < listeVonSpielenJsonObjekte.length; k++) {
+                if (listeVonSpielenJsonObjekte[k].id == spielID) {
+                    spiel = listeVonSpielenJsonObjekte[k];
+                    spielkarteTeam1ID = spiel.spielkarteTeam1Id;
+                    spielkarteTeam2ID = spiel.spielkarteTeam2Id;
                 }
-                anHttpRequest.open("GET", aUrl, true);
-                anHttpRequest.send(null);
             }
-        }
-        var theurl = 'http://localhost:8080/spiel/' + id;
-        var client = new HttpClient();
-        client.get(theurl, function (response) {
-            var spiel = JSON.parse(response);
-            return spiel;
+            //Getting Spielkarten from Database
+            var HttpClient = function () {
+                this.get = function (aUrl, aCallback) {
+                    var anHttpRequest = new XMLHttpRequest();
+                    anHttpRequest.onreadystatechange = function () {
+                        if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                            aCallback(anHttpRequest.responseText);
+                    }
+                    anHttpRequest.open("GET", aUrl, true);
+                    anHttpRequest.send(null);
+                }
+            }
+            var theurl = 'http://localhost:8080/alleSpielkarten';
+            var client = new HttpClient();
+            client.get(theurl, function (response) {
+                listeVonSpielkartenJsonObjekte = JSON.parse(response);
+                //find Spiel
+                for (var j = 0; j < listeVonSpielkartenJsonObjekte.length; j++) {
+                    if (listeVonSpielkartenJsonObjekte[j].id == spielkarteTeam1ID) {
+                        spielkarteTeam1 = listeVonSpielkartenJsonObjekte[j];
+                    }
+                    if (listeVonSpielkartenJsonObjekte[j].id == spielkarteTeam2ID) {
+                        spielkarteTeam2 = listeVonSpielkartenJsonObjekte[j];
+                    }
+                }
+
+
+                //Fetch Data of Spielkarte 1 to Database
+                var siege1 = spielkarteTeam1.anzahlSiege;
+                var diff1 = spielkarteTeam1.punkteDifferenz + (punkte1 - punkte2);
+                if(diff1 > 0){
+                    siege1++;
+                    document.getElementById("testTest").innerHTML = "Herzlichen Glückwunsch!!! Das Team " + spiel.teamname1 + " hat gegen das Team " + spiel.teamname2 + " gewonnen!";
+
+                }
+
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                var raw = JSON.stringify({"anzahlSiege": siege1, "punkteDifferenz": diff1});
+
+                var requestOptions = {
+                    method: 'PUT',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+
+                fetch("http://localhost:8080/spielkarte/" + spielkarteTeam1ID, requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+
+                //Fetch Data of Spielkarte 2 to Database
+                var siege2 = spielkarteTeam2.anzahlSiege;
+                var diff2 = spielkarteTeam2.punkteDifferenz + (punkte2 - punkte1);
+                if(diff2 > 0){
+                    siege2++;
+                    document.getElementById("testTest").innerHTML = "Herzlichen Glückwunsch!!! Das Team " + spiel.teamname2 + " hat gegen das Team " + spiel.teamname1 + " gewonnen!";
+                }
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                var raw = JSON.stringify({"anzahlSiege": siege2, "punkteDifferenz": diff2});
+
+                var requestOptions = {
+                    method: 'PUT',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+
+                fetch("http://localhost:8080/spielkarte/" + spielkarteTeam2ID, requestOptions)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+            });
         });
+
+        // var timer = 10000000000;
+        // while(timer != 0){
+        //     timer--;
+        // }
+        // document.location = "http://localhost:8080/spielPlan";
     }
+
+
+    //
+    // function punkteEintragenInTabelle() {
+    //     var punkte1 = document.getElementById("punkteTeam1").value;
+    //     var punkte2 = document.getElementById("punkteTeam2").value;
+    //     var spielID = document.getElementById("spielID").value;
+    //
+    //     var myHeaders = new Headers();
+    //     myHeaders.append("Content-Type", "application/json");
+    //
+    //     var raw = JSON.stringify({"team1Punkte": punkte1, "team2Punkte": punkte2});
+    //
+    //     var requestOptions = {
+    //         method: 'PUT',
+    //         headers: myHeaders,
+    //         body: raw,
+    //         redirect: 'follow'
+    //     };
+    //
+    //     fetch("http://localhost:8080/spiel/" + spielID, requestOptions)
+    //         .then(response => response.text())
+    //         .then(result => console.log(result))
+    //         .catch(error => console.log('error', error));
+    //
+    //     document.location = "http://localhost:8080/spielPlan";
+    // }
 </script>
 </body>
 </html>

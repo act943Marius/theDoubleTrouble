@@ -25,6 +25,15 @@ public class SpielkarteController {
 
     @RequestMapping(
             method = RequestMethod.GET,
+            path = "/alleSpielkarten",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public List<Spielkarte> getAllSpielkarten() {
+        return spielkarteRepository.findAll();
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
             path = "/spielkarten",
             produces = MediaType.APPLICATION_JSON_VALUE
     )

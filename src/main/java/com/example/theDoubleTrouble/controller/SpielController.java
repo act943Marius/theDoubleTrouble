@@ -63,7 +63,7 @@ public class SpielController {
 
 
     @GetMapping("/createspielZufall")
-    public String createSpielZufall(Pageable pageable) {
+    public String createSpielZufall() {
         List<Team> teams = teamRepository.findAll();
         List<Court> courts = courtRepository.findAll();
         List<Spielkarte> spielkarten = spielkarteRepository.findAll();
