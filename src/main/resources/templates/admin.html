@@ -3,49 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins');
+        html {
+            background-color: ;
+        }
+
+        h2 {
+            font-size: 30px;
+            text-align: center;
+            font-weight: 300;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #cccccc;
+        }
+        a {
+          text-align: right;
+          font-size: 16px;
+          font-weight: 600;
+          text-transform: uppercase;
+          display:inline-block;
+          margin: 40px 8px 10px 8px;
+          color: #cccccc;
+        }
+          input[type=button], input[type=submit], input[type=select]  {
+          background-color: #56baed;
+          position: center;
+          border: none;
+          color: white;
+          padding: 15px 60px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          text-transform: uppercase;
+          font-size: 16px;
+          -webkit-border-radius: 5px 5px 5px 5px;
+          border-radius: 5px 5px 5px 5px;
+          margin: 0px 0px 0px 0px;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -ms-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+        }
+
+        input[type=button]:hover, input[type=submit]:hover, input[type=select]:hover  {
+          background-color: #39ace7;
+        }
+
+        input[type=button]:active, input[type=submit]:active, input[type=select]:active  {
+          -moz-transform: scale(0.95);
+          -webkit-transform: scale(0.95);
+          -o-transform: scale(0.95);
+          -ms-transform: scale(0.95);
+          transform: scale(0.95);
+        }
+        select{
+          background-color: #56baed;
+          position: center;
+          border: none;
+          color: white;
+          padding: 15px 60px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          text-transform: uppercase;
+          font-size: 16px;
+          -webkit-border-radius: 5px 5px 5px 5px;
+          border-radius: 5px 5px 5px 5px;
+          margin: 0px 0px 0px 0px;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -ms-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+        }
+
+       select{
+          background-color: #39ace7;
+        }
+
+        select{
+          -moz-transform: scale(0.95);
+          -webkit-transform: scale(0.95);
+          -o-transform: scale(0.95);
+          -ms-transform: scale(0.95);
+          transform: scale(0.95);
+        }
+        table{
+            width:100%;
+            table-layout: fixed;
+            background-color: white;
+        }
+        .tbl-header{
+        }
+        .tbl-content{
+            -webkit-border-radius: 10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
+            height:600px;
+            overflow-x:auto;
+            margin-top: 0px;
+            border: 2px solid rgba(0,0,0,0);
+            background-color: gray;
+        }
+        th{
+            border: 2px solid rgba(255,255,255,90);
+            padding: 20px 15px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 12px;
+            color: black;
+            text-transform: uppercase;
+            background-color: gray;
+        }
+        td{
+            border: 2px solid rgba(255,255,255,90);
+            padding: 15px;
+            text-align: center;
+            vertical-align:middle;
+            font-weight: 300;
+            font-size: 12px;
+            color: black;
+            border-bottom:black;
+            background-color:  #f6f6f6;
+
+        }
+        .wrapper {
+             display: flex;
+              align-items: center;
+              flex-direction: column;
+              justify-content: center;
+              width: 100%;
+              min-height: 50%;
+              padding: 20px;
+        }
+
+        /* demo styles */
+
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+        body{
+            background-color: white;
+        }
+        section{
+            margin: 0px;
+        }
+
+        /* for custom scrollbar for webkit browser*/
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+        ::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+         /* Simple CSS3 Fade-in-down Animation */
+        .fadeInDown {
+          -webkit-animation-name: fadeInDown;
+          animation-name: fadeInDown;
+          -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+        }
+
+        @-webkit-keyframes fadeInDown {
+          0% {
+            opacity: 0;
+            -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+          }
+          100% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+          }
+        }
+    </style>
 </head>
 <body>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-    var subjectObject = {
-        "Zufall": "",
-        "Schweizer System": ""
-    }
-    var subjectObject2 = {
-        "13:00": "",
-        "14:00": ""
-    }
-    window.onload = function () {
-        var selectSpielmodus = document.getElementById("spielmodusMenu");
-        var selectUhrzeit = document.getElementById("uhrzeitMenu");
-        for (var x in subjectObject) {
-            selectSpielmodus.options[selectSpielmodus.options.length] = new Option(x, x);
+    <section>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <form>
+                    <input type="button" id="HOMEPAGE" value="HOMEPAGE" onclick="zeigeHomepage()" >
+                    <input type="button" id="SPIELE" class="fadeIn third" value="SPIELE" onclick="zeigeSpielplan()" >
+                    <input type="button" id="STATISTIK" value="STATISTIK" onclick="zeigeStatistik()">
+                    <a href="http://localhost:8080">Abmelden</a>
+                </form>
+            </div>
+        </div>
+        <h2 id="turnierÜberschrift">Turnierorganisation</h2>
+    </section>
+        Spielmodus: <select name="spielmodus" id="spielmodusMenu">
+                        <option value="" selected="selected">Spielmodus auswählen</option>
+                    </select>
+           Uhrzeit: <select name="uhrzeit" id="uhrzeitMenu">
+                        <option value="" selected="selected">Uhrzeit auswählen</option>
+                    </select>
+                    <button onclick="createSpiel()" type="submit">submit</button>
+                    <form name="form1" id="form1" action="/createspiel">
+                    </form>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        var subjectObject = {
+            "Zufall": "",
+            "Schweizer System": ""
         }
-        for (var x in subjectObject2) {
-            selectUhrzeit.options[selectUhrzeit.options.length] = new Option(x, x);
+        var subjectObject2 = {
+            " 8:00": "",
+            " 9:00": "",
+            "10:00": "",
+            "11:00": "",
+            "12:00": "",
+            "13:00": "",
+            "14:00": "",
+            "15:00": ""
         }
-    }
-    var name = "ghjgjjgdf";
+        window.onload = function () {
+            var selectSpielmodus = document.getElementById("spielmodusMenu");
+            var selectUhrzeit = document.getElementById("uhrzeitMenu");
+            for (var x in subjectObject) {
+                selectSpielmodus.options[selectSpielmodus.options.length] = new Option(x, x);
+            }
+            for (var x in subjectObject2) {
+                selectUhrzeit.options[selectUhrzeit.options.length] = new Option(x, x);
+            }
+        }
+        var name = "ghjgjjgdf";
 
-    function createSpiel() {
-        var spielModus = document.getElementById("spielmodusMenu").value;
-        var url = "/createspiel" + spielModus;
-        document.location = url;
-    }
-</script>
-
-<h1 id="überschrift">Turnierorganisation</h1>
-Spielmodus: <select name="spielmodus" id="spielmodusMenu">
-    <option value="" selected="Spielmodus">Spielmodus auswählen</option>
-</select>
-<br><br>
-Uhrzeit: <select name="uhrzeit" id="uhrzeitMenu">
-    <option value="" selected="selected">Uhrzeit auswählen</option>
-</select>
-<br><br>
-<button onclick="createSpiel()" type="submit">submit</button>
-<!--<form name="form1" id="form1" action="/createspiel">-->
-<!--</form>-->
-
+        function createSpiel() {
+            var spielModus = document.getElementById("spielmodusMenu").value;
+            var url = "/createspiel" + spielModus;
+            document.location = url;
+        }
+    </script>
 </body>
 </html>
