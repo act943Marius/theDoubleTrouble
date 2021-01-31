@@ -351,16 +351,26 @@
     }
 
     function postTeam(teamID, teamname){
+        var vorname1 = document.getElementById("vorname1Feld").value;
+        var nachname1 = document.getElementById("nachname1Feld").value;
+        var vorname2 = document.getElementById("vorname2Feld").value;
+        var nachname2 = document.getElementById("nachname2Feld").value;
+        var spielerid1 = Math.random() * 100;
+        var spielerid2 = (Math.random() * 200) + 100;
+        var eMailAdresse = document.getElementById("eMailAdreeseFeld").value;
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
             "id": teamID,
             "teamname": teamname,
-            "spieler1Id": 44,
-            "spieler2Id": 45,
+            "spieler1Id": spielerid1,
+            "spieler2Id": spielerid2,
+            "spielerName1": vorname1 + " " + nachname1,
+            "spielerName2":vorname2 + " " + nachname2,
             "imSpiel": false,
-            "eMailAdresse": "sdfgsdg"
+            "eMailAdresse": eMailAdresse
         });
 
         var requestOptions = {
